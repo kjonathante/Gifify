@@ -1,0 +1,2 @@
+53oJ4FxBUFiyz17NiydseLl7lRaUAiyd
+https://api.giphy.com/v1/gifs/search?api_key=53oJ4FxBUFiyz17NiydseLl7lRaUAiyd&q=swift&limit=25&offset=0&rating=G&lang=en
