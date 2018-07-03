@@ -16,7 +16,7 @@ $(document).on('click', '#btn_div button', function(evt){
   const url = searchEndPoint + '?' + $.param({
     api_key: apiKey,
     q: $(this).text(),
-    limit: 2,
+    limit: 10,
     lang: "en"
   });
 
@@ -29,31 +29,35 @@ $(document).on('click', '#btn_div button', function(evt){
     //     data-animate="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200.gif" 
     //     data-state="still" 
     //     class="gif">
+    $('#main').empty();
 
     for (let val of res.data) {
       let id = val.id;
+      //let title = val.title;
       let rating = val.rating;
       let still = val.images.fixed_height_small_still.url;
       let animate = val.images.fixed_height_small.url;
+      let width = val.images.fixed_height_small.width;
       
-      let $imgDiv = $('<div>').append( $('<p>').text( 'Rating: ' + rating) );
-      let $img = $('<img>');
-      $img.attr({
+      width = parseInt(width) + 12;
+
+      //let $title = $('<div>').text( title );
+      let $rating = $('<p>').text( 'Rating: ' + rating );
+      let $imgDiv = $('<div>').addClass( 'img-holder' ).css({ width: width });
+      let $img = $('<img>').attr({
         src: still,
         "data-still": still,
         "data-animate": animate,
         "data-state": "still",
         class: "gif"
       });
-      $imgDiv.append( $img )
-      $('#main').prepend( $imgDiv );
+      $imgDiv.append( $img, $rating );
+
+      $('#main').append( $imgDiv );
       console.log(id);
       console.log(rating);
     }
-  });
-    // let $img = $('<img>');
-
-    // img
+    });
 });
 
 $('#search').on('click', function(evt) {
