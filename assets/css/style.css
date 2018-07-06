@@ -10,8 +10,11 @@
 
 img {
   vertical-align: middle;
+  /* margin: 0 auto 5px auto;
+  display: block; */
   margin-bottom: 5px;
 }
+
 
 .img-holder {
   font-family: 'Roboto', sans-serif;
@@ -23,7 +26,6 @@ img {
   /* //background-color: red; */
   padding: 5px;
   margin: 5px;
-  overflow: visible;
   border: 1px solid rgb(232, 234, 237);
   border-radius: 3px;
 }
