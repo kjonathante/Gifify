@@ -9,22 +9,40 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div>
-    <div>
+
+  <h1>Gihpy API</h1>
+
+  <main>
+    
+    <input class="tabs" id="tab1" type="radio" name="tabs" checked>
+    <label class="tabs-label" for="tab1">Search</label>
+      
+    <input class="tabs" id="tab2" type="radio" name="tabs">
+    <label class="tabs-label" for="tab2">Favorites</label>
+              
+    <section id="content1">
+      <div>
+        <div>
         <form>
           <input type="text" name="query" id="query">
           <input type="submit" id="search" value="Search">
         </form>
-    </div>
+        </div>
 
-    <div id="btn_div"></div>
-    <div class="row">
+      <div id="btn_div"></div>
+      <div class="row">
       <div id="main"></div>
       <div id="sidebar"></div>
-    </div>
-    <div id="favorites"></div>
-  </div>
-  
+      </div>
+      </div>
+    </section>
+      
+    <section id="content2">
+      <div id="favorites"></div>
+    </section>
+              
+  </main>
+    
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
