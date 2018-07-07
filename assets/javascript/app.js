@@ -11,13 +11,13 @@ favoriteGifs();
 
 function favoriteGifs() {
   //use localStorage to implement favorites
-  let arr;
+  let arr=[];
   for ( let i = 0, len = localStorage.length; i < len; ++i ) {
     console.log(  localStorage.key( i ) );
     arr.push( localStorage.key( i ) );
   }
 
-  if (!arr) return; // short circuit. there is no favorites
+  if (arr.length==0) return; // short circuit. there is no favorites
 
   const ids = arr.join(',');
   const gifByIDEndPoint = 'https://api.giphy.com/v1/gifs'
@@ -43,8 +43,8 @@ function favoriteGifs() {
 
 
 
-// Search Giphy when a button is click
-$(document).on('click', '#btn_div button', function(){
+// Search Giphy when a .button is click
+$(document).on('click', '#btn_div .button', function(){
   const searchEndPoint = 'https://api.giphy.com/v1/gifs/search'
   const apiKey = '53oJ4FxBUFiyz17NiydseLl7lRaUAiyd';
   const keyword = $(this).text();
@@ -65,7 +65,7 @@ $(document).on('click', '#btn_div button', function(){
     offset: offset,
     lang: "en"
   });
-  console.log(url);
+  //console.log(url);
 
   // $.each( $('#btn_div').data(), function(key,val) {
   //   console.log( key, val)
@@ -78,7 +78,7 @@ $(document).on('click', '#btn_div button', function(){
     if ( res.pagination.offset == 0) {
       $('#main').empty();
     }
-    appendGifs( res.data, '#main' );
+    appendGifs( res.data, '#main', true );
     $('#btn_div').data({
       keyword: keyword,
       totalCount: res.pagination.total_count,
@@ -88,7 +88,7 @@ $(document).on('click', '#btn_div button', function(){
   });
 });
 
-function appendGifs( data, target ) {
+function appendGifs( data, target, addFav ) {
   //<img src="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif" 
   //     data-still="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif" 
   //     data-animate="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200.gif" 
@@ -102,11 +102,12 @@ function appendGifs( data, target ) {
     let animateURL = val.images.fixed_height_small.url;
     let width = parseInt( val.images.fixed_height_small.width );
     
-    width =  (width < 100) ? 100 : width + 12;
+    width =  (width < 100) ? 100 : width + 10;
 
     let $rating = $('<div>').text( 'Rating: ' + rating );
-    //let $favButton = $('<div>').addClass('fav').text('fav').attr('data-id', id);
-    //$rating.append( $favButton );
+    let $favButton = $('<i>').attr('data-id', id).addClass( (addFav) ? 'fav fa fa-thumbs-o-up' : 'del fa fa-trash-o' );
+//    (addFav) ? $('<i>')addClass('fav fa fa-thumbs-o-up') : $('<i>').addClass( "del fa fa-trash-o").attr('data-id', id) ;
+    $rating.append( $favButton );
 
     let $imgDiv = $('<div>').addClass( 'img-holder' ).css({ width: width });
     let $img = $('<img>').attr({
@@ -118,21 +119,22 @@ function appendGifs( data, target ) {
     });
 
     $imgDiv.append( $img, $rating );
-    //$imgDiv.append( $favButton );
     $(target).append( $imgDiv );
   }
 }
 
-$('#search').on('click', function(evt) {
+// create button clicked or enter key pressed
+$('#create-btn').on('click', function(evt) {
   evt.preventDefault();
-  let keyword = $('#query').val().trim();
+  let keyword = $('#keyword').val().trim();
   if ( keyword ) {
     topics.push( keyword );
     createButton( keyword );
-    $('#query').val('');
+    $('#keyword').val('');
   }
 });
 
+// still or animate
 $(document).on('click', '.gif', function() {
   let img = $( this );
 
@@ -149,15 +151,33 @@ $(document).on('click', '.gif', function() {
   }
 });
 
+// thumbs up clicked, add to favorites
 $(document).on('click', '.fav', function() {
   console.log( this );
   let id = $( this ).attr( "data-id");
-  console.log( id );
 
   localStorage.setItem( id, id);
+  favoriteGifs();
+});
+
+
+// trash clicked, remopve from favorites
+$(document).on('click', '.del', function() {
+  console.log( this );
+  let id$ = $( this )
+  let id = id$.attr( "data-id");
+
+  localStorage.removeItem( id );
+  id$.parent().parent().remove();
+});
+
+
+// tab selection
+$(document).on('click', '.tabs', function() {
+  //console.log($(this).next());
 });
 
 function createButton( str ) {
-  const btn = $('<button>').text( str );
+  const btn = $('<div>').text( str ).addClass('button blue');
   $('#btn_div').append( btn );
 }
