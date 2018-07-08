@@ -138,20 +138,30 @@ input[type="text"] {
   border-radius: 2px; */
 }
 
-.fav, .del {
+.fav, .del, .download {
   float: right;
   cursor: pointer;
   font-size: 1.2rem;
   color: rgb(254,127,45);
 }
 
+.download {
+  margin-right: 5px;
+}
+
+.rating-div {
+  padding-top: 2px;
+}
+
 .fav:hover,
-.del:hover {
+.del:hover,
+.download:hover {
   text-shadow: 2px 2px 1px white;
 }
 
 .fav:active,
-.del:hover {
+.del:active,
+.download:active {
 	position: relative;
 	top: 1px;
 }

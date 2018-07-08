@@ -102,12 +102,13 @@ function appendGifs( data, target, addFav ) {
     let animateURL = val.images.fixed_height_small.url;
     let width = parseInt( val.images.fixed_height_small.width );
     
-    width =  (width < 100) ? 100 : width + 10;
+    width =  (width < 120) ? 120 : width + 10;
 
-    let $rating = $('<div>').text( 'Rating: ' + rating );
+    let $rating = $('<div>').text( 'Rating: ' + rating ).addClass('rating-div');
     let $favButton = $('<i>').attr('data-id', id).addClass( (addFav) ? 'fav fa fa-thumbs-o-up' : 'del fa fa-trash-o' );
+    let $download = $('<i>').attr('data-url', stillURL).addClass('download fa fa-download');
 //    (addFav) ? $('<i>')addClass('fav fa fa-thumbs-o-up') : $('<i>').addClass( "del fa fa-trash-o").attr('data-id', id) ;
-    $rating.append( $favButton );
+    $rating.append( $favButton, $download );
 
     let $imgDiv = $('<div>').addClass( 'img-holder' ).css({ width: width });
     let $img = $('<img>').attr({
@@ -171,6 +172,25 @@ $(document).on('click', '.del', function() {
   id$.parent().parent().remove();
 });
 
+// trash clicked, remopve from favorites
+$(document).on('click', '.download', function() {
+  let url = $(this).attr('data-url');
+  let query = `https://query.yahooapis.com/v1/public/yql?q=select * from data.uri where url="${url}"&format=json&callback=`;
+
+  console.log( encodeURI( query) );
+
+  let a = document.createElement("a");
+  a.download = `xxx.gif`;
+
+  fetch(query).then(response => response.json())
+  .then(({query:{results:{url}}}) => {
+    a.href = url;
+    document.body.appendChild(a);
+    a.click();
+  })
+  .catch(err => console.log(err));
+
+});
 
 // tab selection
 $(document).on('click', '.tabs', function() {
