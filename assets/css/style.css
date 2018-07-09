@@ -16,12 +16,11 @@ body {
 .container {
   height: 100vh;
   display: flex;
-  flex-flow: wrap;
-  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 header {
-  height: 10vh;
+  height: 4rem;
   flex: 1 100%;
   background: url(https://media.giphy.com/media/dwaeIbBnF6HBu/giphy.gif);
   display: flex;
@@ -31,81 +30,63 @@ header {
 
 h1 {
   font-size: 2rem;
-  line-height: 2rem;
-  text-shadow: 1px 1px 2px grey;
+  line-height: 3rem;
+  text-shadow: 1px 1px 2px grey, -1px -1px 2px grey;
   color: white;
 }
 
 main {
-  height: 90vh;
+  height: calc(100vh - 4rem);
   flex: 1 100%;
   padding: 5px;
   background-color: rgb(252,202,70);
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.tabs-label {
+  background-color: #f5f5f5; 
+  border: 1px solid #ddd;
+  padding: 0 25px;
+  cursor: pointer;
+  z-index: 1;
+  margin-left: -1px;
+
+  font-size: 1rem;
+  line-height: 3rem;
+}
+
+.tabs-label:first-of-type {
+  margin-left: 0;
 }
 
 section {
-  display: none;
+  width: 100%;
+  margin-top: -1px;
   padding: 5px;
   border-top: 1px solid #ddd;
+  -webkit-order: 1;
+  order: 1;
+
   background-color: #ededed;
-  height: 95%;
+  height: calc(100% - 3rem - 2px);
 }
 
-.tabs {
+.tabs, section {
   display: none;
 }
 
-.tabs-label {
-  display: inline-block;
-  margin: 0 0 -2px;
-  padding: 0 25px;
-  font-weight: 600;
-  text-align: center;
-  color: #bbb;
-  border: 1px solid transparent;
-  height: 5%;
-}
-
-.tabs-label:before {
-  content: '';
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-}
-
-.tabs-label:hover {
-  color: #888;
-  cursor: pointer;
-}
-
-.tabs:checked + label {
-  color: #555;
-  border: 1px solid #ddd;
-  border-top: 2px solid orange;
-  border-bottom: 1px solid #ededed;
+.tabs:checked + .tabs-label {
+  /* border: 1px solid #ddd; */
   background-color: #ededed;
+  border-bottom: 1px solid #ededed;
 }
 
-#tab1:checked ~ #content1,
-#tab2:checked ~ #content2 {
+.tabs:checked + .tabs-label + section {
   display: flex;
 }
-
-/* @media screen and (max-width: 650px) {
-  label {
-    font-size: 0;
-  }
-
-  label:before {
-    margin: 0;
-    font-size: 18px;
-  }
-}
-@media screen and (max-width: 400px) {
-  label {
-    padding: 15px;
-  }
-} */
 
 .sidebar {
   flex: 30%;
@@ -126,9 +107,10 @@ section {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  align-items: flex-start;
   overflow: scroll;
-
 }
+
 img {
   vertical-align: middle;
   margin-bottom: 5px;
@@ -191,15 +173,6 @@ input[type="text"] {
 	position: relative;
 	top: 1px;
 }
-
-/* .fav::before,
-.del::before,
-.fav::after,
-.del::after {
-  content: "";
-  clear: both;
-  display: table;
-} */
 
 /* button 
 ---------------------------------------------- */
