@@ -8,21 +8,25 @@
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:500|Open+Sans:400,600,700');
 
-html, body {
-  height: 100vh;
-}
-
 body {
   font-family: 'Open Sans', sans-serif;
   color: #555;
 }
 
-header {
+.container {
+  height: 100vh;
   display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+}
+
+header {
   height: 10vh;
+  flex: 1 100%;
+  background: url(https://media.giphy.com/media/dwaeIbBnF6HBu/giphy.gif);
+  display: flex;
   align-items: center;
   justify-content: center;
-  background: url(https://media.giphy.com/media/dwaeIbBnF6HBu/giphy.gif);
 }
 
 h1 {
@@ -34,9 +38,9 @@ h1 {
 
 main {
   height: 90vh;
+  flex: 1 100%;
   padding: 5px;
-  margin: 0 auto;
-  background: rgb(252,202,70);
+  background-color: rgb(252,202,70);
 }
 
 section {
@@ -87,7 +91,7 @@ section {
   display: flex;
 }
 
-@media screen and (max-width: 650px) {
+/* @media screen and (max-width: 650px) {
   label {
     font-size: 0;
   }
@@ -101,7 +105,7 @@ section {
   label {
     padding: 15px;
   }
-}
+} */
 
 .sidebar {
   flex: 30%;

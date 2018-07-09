@@ -124,7 +124,7 @@ function appendGifs( data, target, addFav ) {
   }
 }
 
-// create button clicked or enter key pressed
+// create button clicked 
 $('#create-btn').on('click', function(evt) {
   evt.preventDefault();
   let keyword = $('#keyword').val().trim();
@@ -135,7 +135,7 @@ $('#create-btn').on('click', function(evt) {
   }
 });
 
-// still or animate
+// still or animate toggle
 $(document).on('click', '.gif', function() {
   let img = $( this );
 
@@ -172,7 +172,7 @@ $(document).on('click', '.del', function() {
   id$.parent().parent().remove();
 });
 
-// trash clicked, remopve from favorites
+// download clicked
 $(document).on('click', '.download', function() {
   let url = $(this).attr('data-url');
   let query = `https://query.yahooapis.com/v1/public/yql?q=select * from data.uri where url="${url}"&format=json&callback=`;

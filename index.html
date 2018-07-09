@@ -11,43 +11,42 @@
 </head>
 <body>
 
-  
-  <header>
-    <h1>GifTastic</h1>
-  </header>
+  <div class="container">
+    <header>
+      <h1>GifTastic</h1>
+    </header>
 
-  <main>
-    
-    <!-- <div class="tab-div"> -->
+    <main>
+      
       <input class="tabs" id="tab1" type="radio" name="tabs" checked>
       <label class="tabs-label" for="tab1">Search</label>
         
       <input class="tabs" id="tab2" type="radio" name="tabs">
       <label class="tabs-label" for="tab2">Favorites</label>
-    <!-- </div> -->
-              
-    <section id="content1">
-        <div class="sidebar">
-          <div>
-            <form>
-              <input type="text" name="keyword" id="keyword">
-              <div class="button" id="create-btn" >Create Button</div>
-              <!-- <input type="submit" class="button" id="create-btn" value="Create Button"> -->
-            </form>
-          </div>
-    
-          <div id="btn_div"></div>
-        </div>
-
-        <div id="main"></div>
-    </section>
+                
+      <section id="content1">
+          <div class="sidebar">
+            <div>
+              <form>
+                <input type="text" name="keyword" id="keyword">
+                <div class="button" id="create-btn" >Create Button</div>
+                <!-- <input type="submit" class="button" id="create-btn" value="Create Button"> -->
+              </form>
+            </div>
       
-    <section id="content2">
-      <div id="favorites"></div>
-    </section>
-              
-  </main>
-    
+            <div id="btn_div"></div>
+          </div>
+
+          <div id="main"></div>
+      </section>
+        
+      <section id="content2">
+        <div id="favorites"></div>
+      </section>
+                
+    </main>
+  </div>  
+
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
