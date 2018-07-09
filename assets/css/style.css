@@ -118,6 +118,13 @@ section {
   /* height: 100%; */
 }
 
+#favorites {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  overflow: scroll;
+
+}
 img {
   vertical-align: middle;
   margin-bottom: 5px;
