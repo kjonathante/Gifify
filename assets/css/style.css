@@ -134,14 +134,16 @@ img {
 }
 
 input[type="text"] {
-  display: block;
+  /* display: block; */
+  font-size: 2rem;
+  padding: 0 1rem;
   width: 100%;
 }
 
 #create-btn {
   background-color: rgb(161,193,129);
   width: 100%;
-  margin: 2px 0;
+  margin: 5px 0;
   /* margin: 2px;
   border-radius: 2px; */
 }
