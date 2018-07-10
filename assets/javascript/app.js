@@ -120,7 +120,7 @@ function appendGifs( data, target, addFav ) {
     });
 
     $imgDiv.append( $img, $rating );
-    $(target).append( $imgDiv );
+    $(target).prepend( $imgDiv );
   }
 }
 
